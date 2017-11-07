@@ -1,8 +1,9 @@
 # Get public and private function definition files.
+write-warning "`$PSScriptRoot = $PSScriptRoot"
 $Public  = @( Get-ChildItem -Path $PSScriptRoot\Public\*.ps1 -ErrorAction SilentlyContinue )
 $Private = @( Get-ChildItem -Path $PSScriptRoot\Private\*.ps1 -ErrorAction SilentlyContinue )
 
-# Dot source the files
+#Dot source the files
 Foreach($import in @($Public + $Private))
 {
     Try
@@ -11,8 +12,7 @@ Foreach($import in @($Public + $Private))
     }
     Catch
     {
-        $err = $_ 
-        Write-Error -Message "Failed to import function $($import.fullname): $($err.Exception.Message)"
+        Write-Error -Message "Failed to import function $($import.fullname): $_"
     }
 }
 
@@ -58,7 +58,7 @@ $Themes = @{
         ErrorBackgroundColor              = 'Blue'
     }
     
-    Gray = @{
+    Gray    = @{
         ContinuationPromptForegroundColor = 'DarkYellow'
         ContinuationPromptBackgroundColor = 'Gray'
         DefaultTokenForegroundColor       = 'DarkYellow'
@@ -87,6 +87,37 @@ $Themes = @{
         EmphasisBackgroundColor           = 'Gray'
         ErrorForegroundColor              = 'Red'
         ErrorBackgroundColor              = 'Gray'
+    }
+    
+    Blue = @{
+        ContinuationPromptForegroundColor = 'DarkYellow'
+        ContinuationPromptBackgroundColor = 'Blue'
+        DefaultTokenForegroundColor       = 'DarkYellow'
+        CommentForegroundColor            = 'DarkGreen'
+        KeywordForegroundColor            = 'Green'
+        StringForegroundColor             = 'Magenta'
+        OperatorForegroundColor           = 'DarkGray'
+        VariableForegroundColor           = 'Green'
+        CommandForegroundColor            = 'Yellow'
+        ParameterForegroundColor          = 'DarkGray'
+        TypeForegroundColor               = 'Gray'
+        NumberForegroundColor             = 'White'
+        MemberForegroundColor             = 'White'
+        DefaultTokenBackgroundColor       = 'Blue'
+        CommentBackgroundColor            = 'Blue'
+        KeywordBackgroundColor            = 'Blue'
+        StringBackgroundColor             = 'Blue'
+        OperatorBackgroundColor           = 'Blue'
+        VariableBackgroundColor           = 'Blue'
+        CommandBackgroundColor            = 'Blue'
+        ParameterBackgroundColor          = 'Blue'
+        TypeBackgroundColor               = 'Blue'
+        NumberBackgroundColor             = 'Blue'
+        MemberBackgroundColor             = 'Blue'
+        EmphasisForegroundColor           = 'Cyan'
+        EmphasisBackgroundColor           = 'Blue'
+        ErrorForegroundColor              = 'Red'
+        ErrorBackgroundColor              = 'Blue'
     }
 }
 
