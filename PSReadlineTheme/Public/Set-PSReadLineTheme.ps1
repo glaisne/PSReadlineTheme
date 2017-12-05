@@ -19,7 +19,7 @@ function Set-PSReadLineTheme
             ValueFromPipelineByPropertyName = $true,
             Position = 0)]
         [string]
-        $Name
+        $Name = $host.ui.rawui.backgroundcolor.toString()
     )
 
     if (-not $Themes.ContainsKey($name))
